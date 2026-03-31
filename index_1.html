@@ -1,0 +1,1786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Karthick Raja — Developer · Designer · Marketer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:        #06050A;
+      --surface:   #09080F;
+      --card:      #0D0B14;
+      --card2:     #110F1A;
+      --gold:      #C8A96E;
+      --gold-l:    #E8D4A0;
+      --gold-d:    #8A6F3A;
+      --cream:     #F2EAD8;
+      --text:      #E4DAC8;
+      --muted:     #7A6E5A;
+      --border:    rgba(200,169,110,0.12);
+      --glow:      rgba(200,169,110,0.1);
+      --wapp:      #25D366;
+      --fh:        'Cormorant Garamond', Georgia, serif;
+      --fb:        'DM Sans', system-ui, sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.7}
+
+    /* GRAIN */
+    body::after{
+      content:'';position:fixed;inset:0;pointer-events:none;z-index:999;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
+      opacity:.6;
+    }
+
+    /* ═══ NAV ═══ */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:200;
+      padding:18px 5vw;
+      display:flex;align-items:center;justify-content:space-between;
+      transition:background .4s,border .4s;
+    }
+    nav.scrolled{
+      background:rgba(6,5,10,0.85);
+      border-bottom:1px solid var(--border);
+      backdrop-filter:blur(28px);
+    }
+    .logo{
+      font-family:var(--fh);font-size:1.5rem;font-weight:600;font-style:italic;
+      background:linear-gradient(120deg,var(--gold-l),var(--gold));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      letter-spacing:.5px;
+    }
+    .nav-links{display:flex;gap:32px;list-style:none}
+    .nav-links a{
+      text-decoration:none;color:var(--muted);
+      font-size:.72rem;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;
+      transition:color .25s;position:relative;
+    }
+    .nav-links a::after{
+      content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;
+      background:var(--gold);transition:width .35s;
+    }
+    .nav-links a:hover{color:var(--gold-l)}
+    .nav-links a:hover::after{width:100%}
+    .nav-cta{
+      padding:9px 24px;border:1px solid rgba(200,169,110,0.35);
+      color:var(--gold);font-size:.72rem;font-weight:600;letter-spacing:2px;
+      text-transform:uppercase;text-decoration:none;
+      transition:all .3s;background:rgba(200,169,110,0.04);
+    }
+    .nav-cta:hover{background:rgba(200,169,110,0.1);border-color:var(--gold)}
+    .hamburger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:12px;min-width:44px;min-height:44px;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;}
+    .hamburger span{display:block;width:22px;height:1px;background:var(--gold);transition:all .3s}
+    #mobileMenu{
+      display:none;position:fixed;inset:0;z-index:190;
+      background:rgba(6,5,10,0.98);backdrop-filter:blur(30px);
+      flex-direction:column;align-items:center;justify-content:center;gap:32px;
+      padding:80px 20px 20px;
+    }
+    #mobileMenu.open{display:flex}
+    #mobileMenu a{
+      font-family:var(--fh);font-size:2.2rem;font-weight:300;font-style:italic;
+      color:var(--muted);text-decoration:none;transition:color .25s;
+      padding:14px 20px;width:100%;text-align:center;
+      border-bottom:1px solid rgba(200,169,110,0.07);
+      -webkit-tap-highlight-color:transparent;
+      min-height:56px;display:flex;align-items:center;justify-content:center;
+    }
+    #mobileMenu a:active,#mobileMenu a:hover{color:var(--gold-l)}
+    /* WhatsApp in mobile menu */
+    #mobileMenu .menu-wa{
+      margin-top:12px;
+      padding:14px 36px;
+      background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.25);
+      color:var(--wapp) !important;font-family:var(--fb) !important;
+      font-size:.8rem !important;font-style:normal !important;font-weight:600 !important;
+      letter-spacing:2px;text-transform:uppercase;
+      display:flex;align-items:center;justify-content:center;gap:10px;
+      border-bottom:none !important;width:auto !important;
+    }
+    .close-menu{
+      position:absolute;top:20px;right:5vw;
+      background:rgba(200,169,110,0.08);
+      border:1px solid rgba(200,169,110,0.3);
+      color:var(--gold);font-size:1.5rem;
+      cursor:pointer;transition:all .25s;
+      width:48px;height:48px;
+      display:flex;align-items:center;justify-content:center;
+      border-radius:4px;
+      -webkit-tap-highlight-color:transparent;
+      z-index:999;
+    }
+    .close-menu:hover,.close-menu:active{
+      color:var(--gold-l);
+      background:rgba(200,169,110,0.18);
+      border-color:var(--gold);
+    }
+
+    /* ═══ HERO ═══ */
+    #hero{
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      position:relative;overflow:hidden;
+      padding:100px 5vw 80px;
+    }
+
+    /* Animated background mesh */
+    .hero-mesh{
+      position:absolute;inset:0;
+      background:
+        radial-gradient(ellipse 80% 70% at 65% 55%, rgba(200,169,110,0.065) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(138,111,58,0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 30% 30% at 80% 10%, rgba(200,169,110,0.03) 0%, transparent 60%);
+      animation: meshPulse 8s ease-in-out infinite alternate;
+    }
+    @keyframes meshPulse{
+      from{opacity:.7;transform:scale(1)}
+      to{opacity:1;transform:scale(1.04)}
+    }
+
+    /* Floating geometric ring */
+    .hero-ring{
+      position:absolute;
+      right: -60px; top:50%;
+      transform:translateY(-50%);
+      width:600px;height:600px;
+      border-radius:50%;
+      border:1px solid rgba(200,169,110,0.06);
+      animation:ringRotate 40s linear infinite;
+    }
+    @media(max-width:600px){.hero-ring{display:none}.hero-scan{display:none}}
+    .hero-ring::before{
+      content:'';position:absolute;inset:50px;border-radius:50%;
+      border:1px solid rgba(200,169,110,0.04);
+    }
+    .hero-ring::after{
+      content:'';position:absolute;inset:100px;border-radius:50%;
+      border:1px dashed rgba(200,169,110,0.03);
+    }
+    @keyframes ringRotate{from{transform:translateY(-50%) rotate(0deg)} to{transform:translateY(-50%) rotate(360deg)}}
+
+    /* Scan line */
+    .hero-scan{
+      position:absolute;left:0;right:0;height:1px;
+      background:linear-gradient(90deg,transparent,rgba(200,169,110,0.15),transparent);
+      animation:scanMove 6s ease-in-out infinite;
+      pointer-events:none;
+    }
+    @keyframes scanMove{
+      0%{top:10%;opacity:0}
+      20%{opacity:1}
+      80%{opacity:1}
+      100%{top:90%;opacity:0}
+    }
+
+    .hero-inner{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:80px;
+      align-items:center;
+      width:100%;max-width:1200px;
+      position:relative;z-index:2;
+    }
+
+    /* Hero text stagger */
+    .hero-text > *{opacity:0;transform:translateY(24px)}
+    .hero-eyebrow  {animation:fadeUp .8s .1s cubic-bezier(.22,1,.36,1) forwards}
+    .hero-name     {opacity:1;transform:translateY(0)} /* controlled by typing JS */
+    .hero-rule     {animation:fadeUp .8s .35s cubic-bezier(.22,1,.36,1) forwards}
+    .hero-roles    {animation:fadeUp .8s .45s cubic-bezier(.22,1,.36,1) forwards}
+    .hero-tagline  {animation:fadeUp .8s .55s cubic-bezier(.22,1,.36,1) forwards}
+    .hero-stats    {animation:fadeUp .8s .65s cubic-bezier(.22,1,.36,1) forwards}
+    .hero-cta      {animation:fadeUp .8s .75s cubic-bezier(.22,1,.36,1) forwards}
+
+    @keyframes fadeUp{
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    .hero-eyebrow{
+      display:flex;align-items:center;gap:14px;
+      margin-bottom:24px;
+    }
+    .eyebrow-dash{
+      width:36px;height:1px;
+      background:linear-gradient(90deg,transparent,var(--gold));
+    }
+    .eyebrow-label{
+      font-size:.68rem;letter-spacing:4px;text-transform:uppercase;
+      color:var(--gold);font-weight:600;
+    }
+    .eyebrow-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.4;animation:blink 2s ease-in-out infinite}
+    @keyframes blink{0%,100%{opacity:.4}50%{opacity:1}}
+
+    .hero-name{
+      font-family:var(--fh);
+      font-size:clamp(3.8rem,8vw,7rem);
+      font-weight:700;line-height:.95;letter-spacing:-2px;
+      color:var(--cream);margin-bottom:0;
+    }
+    .hero-name .line1{display:block}
+    .hero-name .line2{
+      display:block;font-style:italic;font-weight:300;
+      background:linear-gradient(135deg,var(--gold-l) 20%,var(--gold) 60%,var(--gold-d));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+
+    .hero-rule{
+      width:80px;height:1px;
+      background:linear-gradient(90deg,var(--gold),transparent);
+      margin:28px 0;
+    }
+
+    .hero-roles{
+      display:flex;flex-wrap:wrap;gap:8px;
+      margin-bottom:24px;
+    }
+    .role-pill{
+      padding:5px 16px;
+      border:1px solid rgba(200,169,110,0.2);
+      background:rgba(200,169,110,0.04);
+      font-size:.72rem;font-weight:500;letter-spacing:1.5px;
+      text-transform:uppercase;color:var(--gold);
+      transition:all .25s;cursor:default;
+    }
+    .role-pill:hover{background:rgba(200,169,110,0.1);border-color:rgba(200,169,110,.45)}
+
+    .hero-tagline{
+      font-family:var(--fh);font-size:clamp(1.1rem,1.8vw,1.35rem);
+      font-style:italic;font-weight:300;color:var(--muted);
+      max-width:460px;line-height:1.6;margin-bottom:40px;
+    }
+
+    .hero-stats{
+      display:flex;gap:40px;margin-bottom:44px;
+    }
+    .hstat{border-left:1px solid var(--border);padding-left:18px}
+    .hstat-num{
+      font-family:var(--fh);font-size:2rem;font-weight:700;line-height:1;
+      background:linear-gradient(135deg,var(--gold-l),var(--gold));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .hstat-label{font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:3px}
+
+    .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+
+    .btn{
+      padding:14px 34px;
+      font-family:var(--fb);font-size:.74rem;font-weight:600;
+      letter-spacing:2.5px;text-transform:uppercase;
+      cursor:pointer;transition:all .3s;
+      text-decoration:none;display:inline-flex;align-items:center;gap:10px;
+      border-radius:0;
+    }
+    .btn-primary{
+      background:linear-gradient(135deg,var(--gold-l),var(--gold));
+      color:#06050A;border:none;
+      box-shadow:0 4px 40px rgba(200,169,110,0.22);
+      position:relative;overflow:hidden;
+    }
+    .btn-primary::before{
+      content:'';position:absolute;inset:0;
+      background:linear-gradient(135deg,transparent,rgba(255,255,255,0.1),transparent);
+      transform:translateX(-100%);transition:transform .5s;
+    }
+    .btn-primary:hover::before{transform:translateX(100%)}
+    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 50px rgba(200,169,110,0.35)}
+
+    .btn-ghost{
+      background:transparent;
+      color:var(--gold-l);
+      border:1px solid rgba(200,169,110,0.3);
+    }
+    .btn-ghost:hover{background:rgba(200,169,110,0.07);border-color:var(--gold);transform:translateY(-3px)}
+
+    /* Hero photo */
+    .hero-photo{
+      flex-shrink:0;
+      opacity:0;transform:translateX(30px);
+      animation:slideInRight .9s .3s cubic-bezier(.22,1,.36,1) forwards;
+    }
+    @keyframes slideInRight{to{opacity:1;transform:translateX(0)}}
+
+    .photo-wrap{
+      width:300px;height:380px;position:relative;
+    }
+    .photo-frame{
+      position:absolute;inset:0;
+      background:linear-gradient(135deg,var(--card2),var(--card));
+      border:1px solid rgba(200,169,110,0.15);
+      overflow:hidden;
+      display:block;
+    }
+    .photo-frame img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center top;
+      display:block;
+    }
+    .photo-frame img{width:100%;height:100%;object-fit:cover}
+    .photo-placeholder{display:flex;flex-direction:column;align-items:center;gap:10px}
+    .photo-placeholder i{font-size:3.5rem;color:var(--gold);opacity:.15}
+    .photo-placeholder span{font-size:.7rem;opacity:.3;letter-spacing:1px;color:var(--muted)}
+
+    /* Corner accents */
+    .c{position:absolute;width:24px;height:24px;border-color:var(--gold);border-style:solid;z-index:2}
+    .c.tl{top:-8px;left:-8px;border-width:1px 0 0 1px}
+    .c.tr{top:-8px;right:-8px;border-width:1px 1px 0 0}
+    .c.bl{bottom:-8px;left:-8px;border-width:0 0 1px 1px}
+    .c.br{bottom:-8px;right:-8px;border-width:0 1px 1px 0}
+
+    /* Floating badge */
+    .photo-badge{
+      position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);
+      background:var(--card);border:1px solid var(--border);
+      padding:8px 24px;
+      font-size:.65rem;letter-spacing:3px;text-transform:uppercase;
+      color:var(--gold);white-space:nowrap;
+    }
+
+    /* Available tag - below photo */
+    .photo-tag{
+      display:inline-flex;align-items:center;gap:8px;
+      margin-top:32px;
+      background:rgba(200,169,110,0.06);border:1px solid rgba(200,169,110,0.2);
+      padding:10px 20px;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;
+      color:var(--gold);white-space:nowrap;
+      animation:floatTag 4s ease-in-out infinite;
+    }
+    .photo-tag .dot{
+      width:7px;height:7px;border-radius:50%;
+      background:var(--wapp);
+      box-shadow:0 0 6px var(--wapp);
+      animation:pulse 2s ease-in-out infinite;
+    }
+    @keyframes floatTag{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.4)}}
+
+    /* ═══ DIVIDER ═══ */
+    .divider{
+      height:1px;
+      background:linear-gradient(90deg,transparent,rgba(200,169,110,0.15),transparent);
+      position:relative;z-index:1;
+    }
+    .divider-center{
+      position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+      width:8px;height:8px;border:1px solid rgba(200,169,110,0.3);
+      background:var(--bg);transform:translate(-50%,-50%) rotate(45deg);
+    }
+
+    /* ═══ SECTIONS ═══ */
+    section{position:relative;z-index:1}
+    .section-wrap{padding:110px 5vw;max-width:1200px;margin:0 auto}
+    #about,#projects,#contact{background:var(--surface)}
+
+    .sec-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+    .sec-dash{width:30px;height:1px;background:var(--gold)}
+    .sec-label{font-size:.66rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:600}
+
+    .sec-title{
+      font-family:var(--fh);font-size:clamp(2.2rem,4.5vw,3.5rem);
+      font-weight:700;line-height:1.05;letter-spacing:-.5px;color:var(--cream);margin-bottom:14px;
+    }
+    .sec-title em{
+      font-style:italic;
+      background:linear-gradient(135deg,var(--gold-l),var(--gold));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .sec-sub{color:var(--muted);font-size:1rem;font-family:var(--fh);font-style:italic;font-weight:300;max-width:500px}
+
+    /* ═══ ABOUT ═══ */
+    .about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:90px;align-items:center}
+    .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:36px}
+    .stat-box{
+      background:var(--card);border:1px solid var(--border);
+      padding:22px;text-align:center;transition:all .3s;
+    }
+    .stat-box:hover{border-color:rgba(200,169,110,.35);transform:translateY(-3px);box-shadow:0 8px 30px var(--glow)}
+    .stat-n{
+      font-family:var(--fh);font-size:2.4rem;font-weight:700;line-height:1;
+      background:linear-gradient(135deg,var(--gold-l),var(--gold));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .stat-l{font-size:.65rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:5px}
+    .about-text p{color:var(--muted);margin-bottom:16px;font-size:.93rem;font-weight:300}
+    .about-text p strong{color:var(--gold-l);font-weight:500}
+    .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+    .pill{
+      padding:6px 16px;border:1px solid rgba(200,169,110,0.18);
+      font-size:.7rem;color:var(--gold);font-weight:500;letter-spacing:1.5px;text-transform:uppercase;
+      background:rgba(200,169,110,0.04);transition:all .2s;cursor:default;
+    }
+    .pill:hover{background:rgba(200,169,110,0.1);border-color:var(--gold)}
+
+    /* ═══ SKILLS ═══ */
+    .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+    .skill-card{
+      background:var(--card);border:1px solid var(--border);
+      padding:30px 22px;text-align:center;
+      transition:all .35s;position:relative;overflow:hidden;cursor:default;
+    }
+    .skill-card::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:1px;
+      background:linear-gradient(90deg,transparent,var(--gold),transparent);
+      transform:scaleX(0);transition:transform .4s;
+    }
+    .skill-card:hover{transform:translateY(-5px);border-color:rgba(200,169,110,.28);box-shadow:0 12px 40px var(--glow)}
+    .skill-card:hover::before{transform:scaleX(1)}
+    .skill-icon2{
+      width:52px;height:52px;margin:0 auto 16px;
+      border:1px solid var(--border);
+      display:flex;align-items:center;justify-content:center;font-size:1.4rem;
+      background:rgba(200,169,110,0.04);transition:all .3s;
+    }
+    .skill-card:hover .skill-icon2{border-color:rgba(200,169,110,.3);background:rgba(200,169,110,.08)}
+    .skill-name2{font-family:var(--fh);font-size:.92rem;font-weight:600;color:var(--cream);margin-bottom:14px}
+    .skill-bar{height:3px;background:rgba(255,255,255,0.06);border-radius:4px;margin-top:8px;position:relative;overflow:visible;}
+    .skill-fill{
+      height:100%;
+      background:linear-gradient(90deg,var(--gold-d),var(--gold),var(--gold-l));
+      border-radius:4px;
+      transition:width 1.6s cubic-bezier(.22,1,.36,1);
+      position:relative;
+      box-shadow:0 0 8px rgba(200,169,110,0.4);
+    }
+    .skill-fill::after{
+      content:attr(data-pct);
+      position:absolute;right:0;top:-22px;
+      font-size:.6rem;font-weight:600;letter-spacing:1px;
+      color:var(--gold);font-family:var(--fb);
+      opacity:0;transition:opacity .4s .8s;
+    }
+    .skill-fill.animated::after{ opacity:1; }
+    .skill-card:hover .skill-fill{
+      box-shadow:0 0 14px rgba(200,169,110,0.65);
+    }
+
+    /* ═══ PROJECT CARDS — CINEMATIC ═══ */
+    .projects-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(350px,1fr));
+      gap:2px;
+    }
+
+    .project-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      position:relative;overflow:hidden;
+      cursor:pointer;
+      /* Start state for entrance animation */
+      opacity:1;transform:translateY(0) scale(1);
+      transition:border-color .4s,box-shadow .4s,transform .5s cubic-bezier(.22,1,.36,1);
+    }
+    .project-card.in-view{
+      opacity:1;transform:translateY(0) scale(1);
+    }
+
+    /* Gold sweep on hover */
+    .project-card::before{
+      content:'';
+      position:absolute;inset:0;z-index:0;
+      background:linear-gradient(135deg,rgba(200,169,110,0.0) 0%,rgba(200,169,110,0.05) 50%,rgba(200,169,110,0) 100%);
+      opacity:0;transition:opacity .4s;
+    }
+    .project-card:hover::before{opacity:1}
+
+    /* Bottom gold bar */
+    .project-card::after{
+      content:'';
+      position:absolute;bottom:0;left:0;right:0;height:2px;z-index:3;
+      background:linear-gradient(90deg,var(--gold-d),var(--gold-l),var(--gold-d));
+      transform:scaleX(0);transform-origin:left;
+      transition:transform .5s cubic-bezier(.22,1,.36,1);
+    }
+    .project-card:hover{
+      transform:translateY(-8px) !important;
+      border-color:rgba(200,169,110,0.45);
+      box-shadow:
+        0 24px 80px rgba(200,169,110,0.15),
+        0 0 0 1px rgba(200,169,110,0.12),
+        0 0 30px rgba(200,169,110,0.08);
+    }
+    .project-card:hover::after{transform:scaleX(1)}
+
+    /* Typing animation cursor */
+    .typing-cursor {
+      display:inline-block;
+      width:3px;
+      background:var(--gold);
+      margin-left:2px;
+      animation:cursorBlink .75s step-end infinite;
+      vertical-align:baseline;
+    }
+    @keyframes cursorBlink{0%,100%{opacity:1}50%{opacity:0}}
+
+    .project-thumb{
+      height:190px;position:relative;overflow:hidden;
+      background:linear-gradient(135deg,var(--card2),#08070E);
+    }
+
+    /* Animated grid pattern in thumb */
+    .proj-grid{
+      position:absolute;inset:0;
+      background-image:
+        linear-gradient(rgba(200,169,110,0.04) 1px, transparent 1px),
+        linear-gradient(90deg,rgba(200,169,110,0.04) 1px,transparent 1px);
+      background-size:28px 28px;
+      transition:transform .6s ease,opacity .4s;
+    }
+    .project-card:hover .proj-grid{transform:scale(1.05);opacity:1.5}
+
+    /* Icon in thumb */
+    .proj-icon{
+      position:absolute;inset:0;
+      display:flex;align-items:center;justify-content:center;
+      font-size:3rem;color:var(--gold);opacity:0.1;
+      transition:opacity .4s,transform .5s cubic-bezier(.22,1,.36,1);
+    }
+    .project-card:hover .proj-icon{opacity:0.18;transform:scale(1.1) rotate(-3deg)}
+
+    /* Number */
+    .proj-num{
+      position:absolute;bottom:14px;right:18px;
+      font-family:var(--fh);font-size:3.5rem;font-weight:700;
+      color:var(--gold);opacity:0.07;line-height:1;
+      transition:opacity .4s;
+    }
+    .project-card:hover .proj-num{opacity:.13}
+
+    /* Reveal overlay on hover */
+    .proj-overlay{
+      position:absolute;inset:0;z-index:2;
+      background:linear-gradient(to bottom,transparent 30%,rgba(6,5,10,0.7));
+      opacity:0;transition:opacity .4s;
+      display:flex;align-items:flex-end;padding:16px 20px;
+    }
+    .project-card:hover .proj-overlay{opacity:1}
+    .proj-overlay-text{
+      font-size:.65rem;letter-spacing:2.5px;text-transform:uppercase;
+      color:var(--gold);font-weight:600;
+    }
+
+    .project-body{padding:28px;position:relative;z-index:1}
+
+    .proj-tag{
+      display:inline-block;padding:3px 12px;margin-bottom:12px;
+      font-size:.63rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;
+      border:1px solid rgba(200,169,110,0.22);color:var(--gold);
+      background:rgba(200,169,110,0.05);
+      transition:all .25s;
+    }
+    .project-card:hover .proj-tag{background:rgba(200,169,110,0.1);border-color:rgba(200,169,110,.4)}
+
+    .proj-title{
+      font-family:var(--fh);font-size:1.18rem;font-weight:700;
+      color:var(--cream);margin-bottom:10px;
+      transition:color .3s;
+    }
+    .project-card:hover .proj-title{color:var(--gold-l)}
+
+    .proj-desc{
+      color:var(--muted);font-size:.86rem;font-weight:300;
+      margin-bottom:22px;line-height:1.65;
+    }
+
+    .proj-link{
+      padding:8px 20px;
+      font-size:.68rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+      border:1px solid rgba(200,169,110,0.28);color:var(--gold);
+      background:rgba(200,169,110,0.04);
+      text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+      transition:all .25s;
+      position:relative;overflow:hidden;
+    }
+    .proj-link::before{
+      content:'';position:absolute;inset:0;
+      background:rgba(200,169,110,0.08);transform:translateX(-101%);
+      transition:transform .3s;
+    }
+    .proj-link:hover::before{transform:translateX(0)}
+    .proj-link:hover{border-color:var(--gold);color:var(--gold-l)}
+    .proj-link i{transition:transform .3s}
+    .proj-link:hover i{transform:translateX(4px)}
+
+    /* ═══ SERVICES ═══ */
+    .svc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:2px}
+    .svc-card{
+      background:var(--card);border:1px solid var(--border);
+      padding:38px 30px;position:relative;transition:all .35s;overflow:hidden;
+    }
+    .svc-card::before{
+      content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
+      background:linear-gradient(to bottom,transparent,var(--gold),transparent);
+      transform:scaleY(0);transition:transform .4s;
+    }
+    .svc-card:hover{transform:translateY(-5px);border-color:rgba(200,169,110,.28);box-shadow:0 16px 50px var(--glow)}
+    .svc-card:hover::before{transform:scaleY(1)}
+    .svc-n{
+      font-family:var(--fh);font-size:3rem;font-weight:700;color:var(--gold);
+      opacity:.07;position:absolute;top:12px;right:20px;line-height:1;
+    }
+    .svc-ico{
+      width:52px;height:52px;border:1px solid var(--border);
+      display:flex;align-items:center;justify-content:center;font-size:1.3rem;
+      background:rgba(200,169,110,0.04);margin-bottom:20px;transition:all .3s;
+    }
+    .svc-card:hover .svc-ico{border-color:var(--gold);background:rgba(200,169,110,.1)}
+    .svc-name{font-family:var(--fh);font-size:1.08rem;font-weight:700;color:var(--cream);margin-bottom:10px}
+    .svc-desc{color:var(--muted);font-size:.85rem;font-weight:300;line-height:1.7}
+
+    /* ═══ CONTACT — PREMIUM ═══ */
+    .contact-container{
+      display:grid;grid-template-columns:1fr 1.1fr;gap:70px;align-items:start;
+    }
+
+    /* Left — info channel */
+    .contact-info-title{
+      font-family:var(--fh);font-size:1rem;font-weight:300;font-style:italic;
+      color:var(--muted);margin-bottom:28px;letter-spacing:.5px;
+    }
+
+    .contact-channels{display:flex;flex-direction:column;gap:2px;margin-bottom:32px}
+
+    .channel{
+      display:flex;align-items:center;gap:18px;
+      padding:18px 20px;
+      background:var(--card);border:1px solid var(--border);
+      text-decoration:none;color:var(--text);
+      transition:all .3s;position:relative;overflow:hidden;
+    }
+    .channel::before{
+      content:'';position:absolute;left:0;top:0;bottom:0;width:1px;
+      background:linear-gradient(to bottom,transparent,var(--gold),transparent);
+      transform:scaleY(0);transition:transform .35s;
+    }
+    .channel:hover{border-color:rgba(200,169,110,.32);transform:translateX(6px);box-shadow:4px 0 30px var(--glow)}
+    .channel:hover::before{transform:scaleY(1)}
+
+    .ch-ico{
+      width:44px;height:44px;border:1px solid var(--border);
+      display:flex;align-items:center;justify-content:center;
+      font-size:.95rem;flex-shrink:0;color:var(--gold);
+      background:rgba(200,169,110,0.04);transition:all .3s;
+    }
+    .channel:hover .ch-ico{border-color:var(--gold);background:rgba(200,169,110,0.1)}
+    .ch-ico.whatsapp{color:var(--wapp)}
+    .channel.whatsapp-channel:hover .ch-ico{border-color:var(--wapp);background:rgba(37,211,102,0.1)}
+    .ch-ico.insta{color:#c13584}
+    .channel.insta-channel:hover .ch-ico{border-color:#c13584;background:rgba(193,53,132,0.1)}
+    .ch-ico.linkedin{color:#0a66c2}
+    .ch-info{}
+    .ch-label{font-size:.63rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+    .ch-value{font-size:.9rem;color:var(--text);font-weight:400}
+
+    /* WhatsApp quick action */
+    .whatsapp-cta{
+      display:flex;align-items:center;gap:14px;
+      padding:18px 22px;
+      background:rgba(37,211,102,0.05);
+      border:1px solid rgba(37,211,102,0.2);
+      text-decoration:none;transition:all .3s;
+      margin-top:10px;
+    }
+    .whatsapp-cta:hover{background:rgba(37,211,102,0.1);border-color:rgba(37,211,102,.4);transform:translateY(-2px)}
+    .wa-icon{
+      width:44px;height:44px;border-radius:50%;
+      background:var(--wapp);display:flex;align-items:center;justify-content:center;
+      font-size:1.1rem;color:#fff;flex-shrink:0;
+    }
+    .wa-text{}
+    .wa-title{font-size:.8rem;font-weight:600;color:#25D366;letter-spacing:.5px}
+    .wa-sub{font-size:.72rem;color:var(--muted)}
+
+    /* Right — form */
+    .contact-form-wrap{
+      background:var(--card);border:1px solid var(--border);
+      padding:40px;position:relative;overflow:hidden;
+    }
+    .contact-form-wrap::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:1px;
+      background:linear-gradient(90deg,transparent,var(--gold),transparent);
+    }
+
+    .form-title{
+      font-family:var(--fh);font-size:1.3rem;font-weight:600;
+      color:var(--cream);margin-bottom:6px;
+    }
+    .form-sub{font-size:.82rem;color:var(--muted);margin-bottom:30px;font-family:var(--fh);font-style:italic;font-weight:300}
+
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .form-group{margin-bottom:16px}
+    .form-group label{
+      display:block;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;
+      color:var(--muted);margin-bottom:8px;font-weight:500;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select{
+      width:100%;
+      background:rgba(255,255,255,0.02);
+      border:1px solid rgba(200,169,110,0.12);
+      color:var(--text);font-family:var(--fb);font-size:.88rem;
+      padding:13px 16px;
+      outline:none;transition:border-color .25s,box-shadow .25s;
+      resize:none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus{
+      border-color:rgba(200,169,110,0.45);
+      box-shadow:0 0 0 3px rgba(200,169,110,0.06);
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder{color:rgba(122,110,90,0.5)}
+    .form-group textarea{height:110px}
+
+    /* Budget selector */
+    .form-group select{
+      appearance:none;cursor:pointer;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C8A96E' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat:no-repeat;background-position:right 14px center;
+    }
+    .form-group select option{background:var(--card);color:var(--text)}
+
+    .form-actions{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+
+    /* Email submit */
+    .btn-submit{
+      flex:1;min-width:150px;padding:14px 24px;
+      font-family:var(--fb);font-size:.72rem;font-weight:600;
+      letter-spacing:2.5px;text-transform:uppercase;
+      cursor:pointer;border:none;
+      background:linear-gradient(135deg,var(--gold-l),var(--gold));
+      color:#06050A;
+      display:flex;align-items:center;justify-content:center;gap:10px;
+      transition:all .3s;position:relative;overflow:hidden;
+    }
+    .btn-submit::before{
+      content:'';position:absolute;inset:0;
+      background:rgba(255,255,255,0.12);
+      transform:translateX(-101%);transition:transform .4s;
+    }
+    .btn-submit:hover::before{transform:translateX(0)}
+    .btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(200,169,110,0.3)}
+
+    /* WhatsApp form button */
+    .btn-wa{
+      padding:14px 22px;
+      font-family:var(--fb);font-size:.72rem;font-weight:600;
+      letter-spacing:2px;text-transform:uppercase;
+      cursor:pointer;
+      background:rgba(37,211,102,0.08);
+      border:1px solid rgba(37,211,102,0.3);
+      color:var(--wapp);
+      display:flex;align-items:center;justify-content:center;gap:8px;
+      transition:all .3s;text-decoration:none;
+    }
+    .btn-wa:hover{background:rgba(37,211,102,0.15);border-color:rgba(37,211,102,.5);transform:translateY(-2px)}
+
+    /* ═══ FOOTER ═══ */
+    footer{
+      padding:50px 5vw;
+      border-top:1px solid var(--border);
+      background:var(--surface);
+    }
+    .footer-inner{
+      max-width:1200px;margin:0 auto;
+      display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;
+    }
+    .footer-logo{
+      font-family:var(--fh);font-size:1.3rem;font-style:italic;font-weight:600;
+      background:linear-gradient(135deg,var(--gold-l),var(--gold));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .footer-copy{font-size:.73rem;color:var(--muted);letter-spacing:.5px}
+    .footer-socials{display:flex;gap:10px}
+    .soc{
+      width:36px;height:36px;border:1px solid var(--border);
+      display:flex;align-items:center;justify-content:center;
+      color:var(--muted);text-decoration:none;font-size:.85rem;
+      transition:all .25s;
+    }
+    .soc:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+
+    /* ═══ REVEAL ANIMATIONS ═══ */
+    .reveal{opacity:1;transform:translateY(0);transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
+    .reveal.in-view{opacity:1;transform:translateY(0)}
+    .reveal-delay-1{transition-delay:.1s}
+    .reveal-delay-2{transition-delay:.2s}
+    .reveal-delay-3{transition-delay:.3s}
+    .reveal-delay-4{transition-delay:.4s}
+
+    /* ═══ SCROLLBAR ═══ */
+    ::-webkit-scrollbar{width:3px}
+    ::-webkit-scrollbar-track{background:var(--bg)}
+    ::-webkit-scrollbar-thumb{background:var(--gold-d);border-radius:2px}
+
+    /* ═══ RESPONSIVE ═══ */
+    /* ═══ TABLET (max 900px) ═══ */
+    @media(max-width:900px){
+      .nav-links,.nav-cta{display:none}
+      .hamburger{display:flex}
+
+      .hero-inner{
+        grid-template-columns:1fr;
+        gap:40px;
+        text-align:center;
+      }
+      .hero-eyebrow{justify-content:center}
+      .hero-rule{margin:28px auto}
+      .hero-roles{justify-content:center}
+      .hero-tagline{margin:0 auto 40px}
+      .hero-stats{justify-content:center}
+      .hero-cta{justify-content:center}
+      .hero-photo{justify-self:center}
+      .photo-tag{position:static;margin-top:24px;animation:none}
+
+      .about-grid{grid-template-columns:1fr;gap:40px}
+      .about-stats{grid-template-columns:1fr 1fr}
+
+      .contact-container{grid-template-columns:1fr;gap:36px}
+      .form-row{grid-template-columns:1fr}
+
+      .footer-inner{flex-direction:column;align-items:center;text-align:center;gap:16px}
+    }
+
+    /* ═══ MOBILE (max 600px) ═══ */
+    @media(max-width:600px){
+      /* Nav */
+      nav{padding:16px 5vw}
+      .logo{font-size:1.25rem}
+
+      /* Section padding */
+      .section-wrap{padding:70px 5vw}
+
+      /* Hero */
+      #hero{padding:90px 5vw 60px}
+      .hero-name{font-size:clamp(3rem,14vw,4.5rem);letter-spacing:-1px}
+      .hero-tagline{font-size:1rem}
+      .hero-stats{gap:16px}
+      .hstat-num{font-size:1.6rem}
+      .hstat-label{font-size:.6rem}
+      .btn{padding:12px 22px;font-size:.7rem;letter-spacing:2px}
+      .photo-wrap{width:220px;height:280px}
+      .photo-badge{font-size:.58rem;padding:6px 14px;bottom:-14px}
+      .photo-tag{padding:8px 16px;font-size:.62rem}
+
+      /* About */
+      .about-stats{grid-template-columns:1fr 1fr;gap:2px}
+      .stat-n{font-size:2rem}
+      .sec-title{font-size:clamp(1.9rem,8vw,2.6rem)}
+
+      /* Skills */
+      .skills-grid{grid-template-columns:1fr 1fr}
+      .svc-grid{grid-template-columns:1fr}
+      .skill-card{padding:20px 12px}
+      .skill-icon2{width:40px;height:40px;font-size:1rem}
+      .skill-name2{font-size:.8rem}
+
+      /* Projects */
+      .projects-grid{grid-template-columns:1fr}
+      .project-thumb{height:150px}
+      .project-body{padding:20px 16px}
+      .proj-title{font-size:1rem}
+
+      /* Services */
+      .svc-grid{grid-template-columns:1fr}
+      .svc-card{padding:26px 20px}
+
+      /* Contact */
+      .contact-form-wrap{padding:24px 18px}
+      .form-title{font-size:1.15rem}
+      .channel{padding:14px 16px}
+      .ch-ico{width:38px;height:38px;font-size:.85rem}
+      .ch-value{font-size:.82rem}
+      .whatsapp-cta{padding:14px 16px}
+      .form-actions{flex-direction:column}
+      .btn-submit,.btn-wa{width:100%;justify-content:center}
+
+      /* Pills */
+      .pills{gap:6px}
+      .pill{font-size:.65rem;padding:5px 12px}
+      /* Roles */
+      .hero-roles{gap:6px}
+      .role-pill{font-size:.68rem;padding:4px 12px}
+      /* Footer */
+      .footer-logo{font-size:1.1rem}
+      .footer-copy{font-size:.68rem}
+      /* Hide decorative only */
+      .eyebrow-dash{width:24px}
+    }
+
+    /* ═══ SMALL MOBILE (max 380px) ═══ */
+    @media(max-width:380px){
+      .hero-name{font-size:clamp(2.6rem,13vw,3.5rem)}
+      .skills-grid{grid-template-columns:1fr 1fr}
+      .svc-grid{grid-template-columns:1fr}
+      .hero-cta{flex-direction:column;align-items:center}
+      .btn{width:100%;justify-content:center}
+      .hero-stats{flex-wrap:wrap;justify-content:center;gap:12px}
+    }
+
+    /* TOAST */
+    #toast{
+      position:fixed;bottom:32px;right:32px;z-index:500;
+      background:var(--card);border:1px solid rgba(200,169,110,.3);
+      padding:16px 24px;font-size:.82rem;color:var(--gold-l);
+      box-shadow:0 8px 40px rgba(0,0,0,.4);
+      transform:translateY(20px);opacity:0;
+      transition:all .4s cubic-bezier(.22,1,.36,1);pointer-events:none;
+    }
+    #toast.show{transform:translateY(0);opacity:1}
+  </style>
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDFcqRTru--q-IwB92djpKsY4aId3Dlra0",
+      authDomain: "karthick-portfolio-feeb9.firebaseapp.com",
+      projectId: "karthick-portfolio-feeb9",
+      storageBucket: "karthick-portfolio-feeb9.firebasestorage.app",
+      messagingSenderId: "796128200979",
+      appId: "1:796128200979:web:72e539ed0709323dfa72e6",
+      measurementId: "G-27DJP486MB"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Make globally accessible to form
+    window.db = db;
+    window.addDoc = addDoc;
+    window.collection = collection;
+    window.serverTimestamp = serverTimestamp;
+    window.firebaseReady = true;
+
+    console.log("✅ Firebase connected!");
+  </script>
+</head>
+<body>
+
+<!-- ═══ WELCOME INTRO SCREEN ═══ -->
+<div id="intro-screen" style="
+  position:fixed;inset:0;z-index:9999;
+  background:#06050A;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  cursor:pointer;
+  overflow:hidden;
+">
+  <style>
+    /* Intro particles */
+    .intro-particle {
+      position:absolute;border-radius:50%;
+      background:rgba(200,169,110,0.15);
+      pointer-events:none;
+      animation:introFloat linear infinite;
+    }
+    @keyframes introFloat {
+      0%{transform:translateY(100vh) rotate(0deg);opacity:0}
+      10%{opacity:1}
+      90%{opacity:1}
+      100%{transform:translateY(-120px) rotate(720deg);opacity:0}
+    }
+
+    /* Horizontal scan line */
+    .intro-scan {
+      position:absolute;left:0;right:0;height:1px;
+      background:linear-gradient(90deg,transparent,rgba(200,169,110,0.2),transparent);
+      animation:introScan 4s ease-in-out infinite;
+      pointer-events:none;
+    }
+    @keyframes introScan{
+      0%{top:5%;opacity:0}20%{opacity:1}80%{opacity:1}100%{top:95%;opacity:0}
+    }
+
+    /* Corner decorations */
+    .intro-corner {
+      position:absolute;width:60px;height:60px;
+      border-color:rgba(200,169,110,0.25);border-style:solid;
+    }
+    .intro-corner.tl{top:32px;left:32px;border-width:1px 0 0 1px}
+    .intro-corner.tr{top:32px;right:32px;border-width:1px 1px 0 0}
+    .intro-corner.bl{bottom:32px;left:32px;border-width:0 0 1px 1px}
+    .intro-corner.br{bottom:32px;right:32px;border-width:0 1px 1px 0}
+
+    /* Main content */
+    .intro-content {
+      text-align:center;position:relative;z-index:2;
+      animation:introFadeIn 1s ease both;
+    }
+    @keyframes introFadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+    .intro-eyebrow {
+      font-family:'DM Sans',sans-serif;
+      font-size:.65rem;letter-spacing:5px;text-transform:uppercase;
+      color:rgba(200,169,110,0.5);margin-bottom:28px;
+      display:flex;align-items:center;justify-content:center;gap:14px;
+      animation:introFadeIn 1s .2s ease both;opacity:0;
+    }
+    .intro-line {width:40px;height:1px;background:rgba(200,169,110,0.3)}
+
+    .intro-name {
+      font-family:'Cormorant Garamond',Georgia,serif;
+      font-size:clamp(3rem,10vw,6.5rem);
+      font-weight:700;line-height:1;
+      letter-spacing:-2px;
+      color:#F2EAD8;
+      margin-bottom:6px;
+      animation:introFadeIn 1s .35s ease both;opacity:0;
+    }
+    .intro-name span {
+      display:block;font-style:italic;font-weight:300;
+      background:linear-gradient(135deg,#E8D4A0 20%,#C8A96E 60%,#8A6F3A);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+
+    .intro-rule {
+      width:80px;height:1px;
+      background:linear-gradient(90deg,transparent,#C8A96E,transparent);
+      margin:28px auto;
+      animation:introFadeIn 1s .5s ease both;opacity:0;
+    }
+
+    .intro-tagline {
+      font-family:'Cormorant Garamond',Georgia,serif;
+      font-size:clamp(1rem,2.5vw,1.3rem);
+      font-style:italic;font-weight:300;
+      color:rgba(200,169,110,0.6);
+      margin-bottom:52px;letter-spacing:.5px;
+      animation:introFadeIn 1s .65s ease both;opacity:0;
+    }
+
+    /* Click CTA */
+    .intro-cta {
+      display:inline-flex;align-items:center;gap:14px;
+      padding:16px 44px;
+      border:1px solid rgba(200,169,110,0.3);
+      color:#C8A96E;
+      font-family:'DM Sans',sans-serif;
+      font-size:.72rem;font-weight:600;
+      letter-spacing:3px;text-transform:uppercase;
+      background:rgba(200,169,110,0.04);
+      transition:all .3s;
+      animation:introFadeIn 1s .8s ease both, ctaPulse 2.5s 1.8s ease-in-out infinite;
+      opacity:0;position:relative;overflow:hidden;
+    }
+    .intro-cta::before {
+      content:'';position:absolute;inset:0;
+      background:linear-gradient(90deg,transparent,rgba(200,169,110,0.08),transparent);
+      transform:translateX(-100%);
+      animation:shimmer 2.5s 2s ease-in-out infinite;
+    }
+    @keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+    @keyframes ctaPulse{
+      0%,100%{box-shadow:none;border-color:rgba(200,169,110,0.3)}
+      50%{box-shadow:0 0 28px rgba(200,169,110,0.15);border-color:rgba(200,169,110,0.6)}
+    }
+    .intro-cta:hover{
+      background:rgba(200,169,110,0.1);
+      border-color:#C8A96E;
+      transform:translateY(-2px);
+    }
+    .intro-arrow {
+      display:inline-block;
+      animation:arrowBounce 1.2s ease-in-out infinite;
+    }
+    @keyframes arrowBounce{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}
+
+    /* Exit animation */
+    #intro-screen.exit {
+      animation:introExit .9s cubic-bezier(.76,0,.24,1) forwards;
+    }
+    @keyframes introExit{
+      0%{opacity:1;transform:scale(1)}
+      40%{opacity:1;transform:scale(1.03)}
+      100%{opacity:0;transform:scale(1.08);pointer-events:none}
+    }
+
+    /* Bottom credit */
+    .intro-credit {
+      position:absolute;bottom:28px;
+      font-family:'DM Sans',sans-serif;
+      font-size:.62rem;letter-spacing:3px;text-transform:uppercase;
+      color:rgba(200,169,110,0.2);
+      animation:introFadeIn 1s 1.2s ease both;opacity:0;
+    }
+  </style>
+
+  <!-- Decorative corners -->
+  <div class="intro-corner tl"></div>
+  <div class="intro-corner tr"></div>
+  <div class="intro-corner bl"></div>
+  <div class="intro-corner br"></div>
+  <div class="intro-scan"></div>
+
+  <!-- Main content -->
+  <div class="intro-content">
+    <div class="intro-eyebrow">
+      <div class="intro-line"></div>
+      Welcome to my portfolio
+      <div class="intro-line"></div>
+    </div>
+
+    <div class="intro-name">
+      Karthick
+      <span>Raja</span>
+    </div>
+
+    <div class="intro-rule"></div>
+
+    <p class="intro-tagline">
+      "Developer · Designer · Marketer"
+    </p>
+
+    <div class="intro-cta" onclick="enterPortfolio()">
+      Enter Portfolio <span class="intro-arrow">→</span>
+    </div>
+  </div>
+
+  <div class="intro-credit">© 2026 Karthick Raja · Freelancer</div>
+</div>
+
+<script>
+  // Spawn floating particles
+  (function(){
+    const s = document.getElementById('intro-screen');
+    for(let i=0;i<20;i++){
+      const p=document.createElement('div');
+      p.className='intro-particle';
+      const sz=Math.random()*5+2;
+      p.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;animation-duration:${Math.random()*14+8}s;animation-delay:${Math.random()*6}s;`;
+      s.appendChild(p);
+    }
+  })();
+
+  function enterPortfolio(){
+    const s = document.getElementById('intro-screen');
+    s.classList.add('exit');
+    setTimeout(()=>{ s.style.display='none'; }, 900);
+  }
+
+  // Also allow clicking anywhere on screen
+  document.getElementById('intro-screen').addEventListener('click', function(e){
+    enterPortfolio();
+  });
+</script>
+
+<nav id="navbar">
+  <div class="logo">Karthick Raja</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Hire Me</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mobileMenu">
+  <button class="close-menu" id="closeMenu">✕</button>
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#skills" onclick="closeMobile()">Skills</a>
+  <a href="#projects" onclick="closeMobile()">Work</a>
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="https://wa.me/918610861188" target="_blank" class="menu-wa" onclick="closeMobile()"><i class="fab fa-whatsapp"></i> WhatsApp Me</a>
+</div>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<section id="hero">
+  <div class="hero-mesh"></div>
+  <div class="hero-ring"></div>
+  <div class="hero-scan"></div>
+
+  <div class="hero-inner">
+    <!-- Text -->
+    <div class="hero-text">
+      <div class="hero-eyebrow">
+        <div class="eyebrow-dash"></div>
+        <span class="eyebrow-label">Building the Digital Future</span>
+        <div class="eyebrow-dot"></div>
+      </div>
+
+      <h1 class="hero-name">
+        <span class="line1" id="type-line1"></span>
+        <span class="line2" id="type-line2"></span><span class="typing-cursor" id="type-cursor"></span>
+      </h1>
+
+      <div class="hero-rule"></div>
+
+      <div class="hero-roles">
+        <span class="role-pill">Web Developer</span>
+        <span class="role-pill">App Developer</span>
+        <span class="role-pill">Digital Marketer</span>
+        <span class="role-pill">Freelancer</span>
+      </div>
+
+      <p class="hero-tagline">
+        "Turning ideas into digital experiences — one precise line of code at a time."
+      </p>
+
+      <div class="hero-stats">
+        <div class="hstat">
+          <div class="hstat-num">6+</div>
+          <div class="hstat-label">Projects Done</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-num">🚀</div>
+          <div class="hstat-label">Freelancer</div>
+        </div>
+      </div>
+
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">
+          <i class="fas fa-eye"></i> View My Work
+        </a>
+        <a href="#contact" class="btn btn-ghost">
+          <i class="fas fa-paper-plane"></i> Let's Talk
+        </a>
+      </div>
+    </div>
+
+    <!-- Photo -->
+    <div class="hero-photo">
+      <div class="photo-wrap">
+        <div class="photo-frame">
+          <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/wAARCAI2AZADASIAAhEBAxEB/8QAHQABAAEFAQEBAAAAAAAAAAAAAAECAwQFBgcICf/EAEkQAAEDAgQDBQQGBgcIAgMAAAEAAgMEEQUSITEGQVEHEyJhcRQygZEII0KhsbIVJFJiwdEWM0NkcnSiJTU2VGNzgpI0ROHw8f/EABoBAQEBAQEBAQAAAAAAAAAAAAABAgMEBQb/xAAlEQEBAAICAgIDAAMBAQAAAAAAAQIRAzESIQRBEyJRFDJhM0L/2gAMAwEAAhEDEQA/APqlEREEREBERAREQEREBERAREQEREBERARERREREEREBERAREQEREBERARERREREEREBERFEREBEREEREBERARERREREEREBERAREQEREBERAREQEREBERFEREBERAREQEREBERAREQEREBEREEREBERFEREBEREEREUREQEREBERARERBERFEREQREQEREBERAREQEREUREQEREBERAREQEREBERAREQEREQREQEREBERFEREBERAREQEREBERAREQEREQRERREREEREURERBERFEREBERAREQEREBERAREQEREBERAREQEREBEREEREBERFEREBEuiAiIgIiICIiAiIgIiIgiIgIiICIiAiIgIiIoiIiCKLoipRQiCVCpc9rSASATsubxTjaiwzEpKOR4+pjEspvo0E2ClsnayW9OmRaTDuMMIxSp9mp6yN81vcB1W5D2k2BSWXoss7VIsKvrJaVneRxh7G++SbWC4njLtK/o5hj3gxe3Eh0UIu7O2/l5KXKRZjb09ERfOLfpJYvSVpE9BDNTnZuazwvS+Cu2XBOKQyCZ4o6pxsGSG2Y9ApM5VuFj0K6KkSNO2vopa4O2W2FV0UIglERAREQEREBEREEREBERFEUIglERAREQEREBEREEREBERFEREQREQERQil0REBFbknZFIxjiAX6BVueGi5QSouuI7RO0GDhWgY+B7JJnG9gb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" alt="Karthick Raja"/>
+        </div>
+        <div class="c tl"></div>
+        <div class="c tr"></div>
+        <div class="c bl"></div>
+        <div class="c br"></div>
+        <div class="photo-badge">Karthick Raja · Tamil Nadu</div>
+      </div>
+      <div style="text-align:center;margin-top:32px;">
+        <div class="photo-tag"><span class="dot"></span> Available for work</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-center"></div></div>
+
+<!-- ═══════════════════════ ABOUT ═══════════════════════ -->
+<section id="about">
+  <div class="section-wrap">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="sec-eyebrow"><div class="sec-dash"></div><span class="sec-label">About Me</span></div>
+        <h2 class="sec-title">The craft<br>behind the <em>code.</em></h2>
+        <div class="about-stats" style="grid-template-columns:1fr;">
+          <div class="stat-box" style="text-align:center;padding:32px 20px;">
+            <div class="stat-n" style="font-size:2.5rem;">🚀</div>
+            <div class="stat-l" style="font-size:.85rem;margin-top:10px;letter-spacing:3px;">Freelancer</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-text reveal reveal-delay-2">
+        <p>Hello — I'm <strong>Karthick Raja</strong>, a multidisciplinary digital professional from Tamil Nadu, India. I build complete digital solutions that merge technical excellence with creative strategy.</p>
+        <p>In <strong>Web Development</strong>, I craft responsive, performant websites using modern frameworks — every pixel considered, every interaction intentional.</p>
+        <p>As a <strong>Mobile App Developer</strong>, I deliver cross-platform applications with elegant interfaces and seamless performance on both iOS and Android.</p>
+        <p>My <strong>Digital Marketing</strong> expertise closes the loop — I don't just build products, I help them reach the right audience, grow, and convert.</p>
+        <div class="pills">
+          <span class="pill">Web Dev</span>
+          <span class="pill">App Dev</span>
+          <span class="pill">Strategy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-center"></div></div>
+
+<!-- ═══════════════════════ SKILLS ═══════════════════════ -->
+<section id="skills">
+  <div class="section-wrap">
+    <div class="reveal" style="text-align:center;max-width:560px;margin:0 auto 60px">
+      <div class="sec-eyebrow" style="justify-content:center"><div class="sec-dash"></div><span class="sec-label">My Toolkit</span><div class="sec-dash" style="background:linear-gradient(270deg,transparent,var(--gold))"></div></div>
+      <h2 class="sec-title">Skills &amp; <em>Technologies</em></h2>
+      <p class="sec-sub" style="margin:0 auto">Every tool chosen with purpose.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal reveal-delay-1"><div class="skill-icon2">🌐</div><div class="skill-name2">HTML5</div><div class="skill-bar"><div class="skill-fill" data-pct="95%" style="width:95%"></div></div></div>
+      <div class="skill-card reveal reveal-delay-2"><div class="skill-icon2">🎨</div><div class="skill-name2">CSS3</div><div class="skill-bar"><div class="skill-fill" data-pct="90%" style="width:90%"></div></div></div>
+      <div class="skill-card reveal reveal-delay-3"><div class="skill-icon2">⚡</div><div class="skill-name2">JavaScript</div><div class="skill-bar"><div class="skill-fill" data-pct="85%" style="width:85%"></div></div></div>
+      <div class="skill-card reveal reveal-delay-1"><div class="skill-icon2">⚛️</div><div class="skill-name2">React</div><div class="skill-bar"><div class="skill-fill" data-pct="80%" style="width:80%"></div></div></div>
+      <div class="skill-card reveal reveal-delay-2"><div class="skill-icon2">📱</div><div class="skill-name2">App Development</div><div class="skill-bar"><div class="skill-fill" data-pct="82%" style="width:82%"></div></div></div>
+      <div class="skill-card reveal reveal-delay-3"><div class="skill-icon2">📊</div><div class="skill-name2">Digital Marketing</div><div class="skill-bar"><div class="skill-fill" data-pct="86%" style="width:86%"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-center"></div></div>
+
+<!-- ═══════════════════════ PROJECTS ═══════════════════════ -->
+<section id="projects">
+  <div class="section-wrap">
+    <div class="reveal" style="text-align:center;max-width:560px;margin:0 auto 60px">
+      <div class="sec-eyebrow" style="justify-content:center"><div class="sec-dash"></div><span class="sec-label">Featured Work</span><div class="sec-dash" style="background:linear-gradient(270deg,transparent,var(--gold))"></div></div>
+      <h2 class="sec-title">Selected <em>Projects</em></h2>
+      <p class="sec-sub" style="margin:0 auto">Work I'm proud to have crafted.</p>
+    </div>
+
+    <div class="projects-grid">
+      <!-- 01 -->
+      <div class="project-card" data-delay="0">
+        <div class="project-thumb">
+          <div class="proj-grid"></div>
+          <div class="proj-icon"><i class="fas fa-leaf"></i></div>
+          <div class="proj-num">01</div>
+          <div class="proj-overlay"><span class="proj-overlay-text">View Project ↗</span></div>
+        </div>
+        <div class="project-body">
+          <span class="proj-tag">Web</span>
+          <h3 class="proj-title">ECOSERVE – Sustainable Packaging</h3>
+          <p class="proj-desc">A modern website for an eco-friendly packaging company in India, promoting sustainable solutions with a clean, professional design.</p>
+          <a href="https://ecoserve-india.netlify.app/" target="_blank" class="proj-link"><i class="fas fa-arrow-right"></i> View Project</a>
+        </div>
+      </div>
+
+      <!-- 02 -->
+      <div class="project-card" data-delay="100">
+        <div class="project-thumb">
+          <div class="proj-grid"></div>
+          <div class="proj-icon"><i class="fas fa-mobile-alt"></i></div>
+          <div class="proj-num">02</div>
+          <div class="proj-overlay"><span class="proj-overlay-text">View Project ↗</span></div>
+        </div>
+        <div class="project-body">
+          <span class="proj-tag">Mobile App</span>
+          <h3 class="proj-title">TastyMeals – Food Delivery App</h3>
+          <p class="proj-desc">A complete food delivery mobile app with smooth UI, restaurant listings, cart system, and seamless ordering experience.</p>
+          <a href="https://22it08ucet-noob.github.io/tastymeals/" target="_blank" class="proj-link"><i class="fas fa-arrow-right"></i> View Project</a>
+        </div>
+      </div>
+
+      <!-- 03 -->
+      <div class="project-card" data-delay="200">
+        <div class="project-thumb">
+          <div class="proj-grid"></div>
+          <div class="proj-icon"><i class="fas fa-bolt"></i></div>
+          <div class="proj-num">03</div>
+          <div class="proj-overlay"><span class="proj-overlay-text">View Project ↗</span></div>
+        </div>
+        <div class="project-body">
+          <span class="proj-tag">Digital Agency</span>
+          <h3 class="proj-title">SparkWave — Digital Agency</h3>
+          <p class="proj-desc">A full-scale digital agency website for Madurai-based SparkWave — covering digital marketing, web dev, SEO, social media & brand strategy.</p>
+          <a href="https://22it08ucet-noob.github.io/sparkwave-website/" target="_blank" class="proj-link"><i class="fas fa-arrow-right"></i> View Project</a>
+        </div>
+      </div>
+
+      <!-- 04 -->
+      <div class="project-card" data-delay="0">
+        <div class="project-thumb">
+          <div class="proj-grid"></div>
+          <div class="proj-icon"><i class="fas fa-wrench"></i></div>
+          <div class="proj-num">04</div>
+          <div class="proj-overlay"><span class="proj-overlay-text">View Project ↗</span></div>
+        </div>
+        <div class="project-body">
+          <span class="proj-tag">Web App</span>
+          <h3 class="proj-title">GearUp — Bike & Car Service</h3>
+          <p class="proj-desc">Tamil Nadu's premium vehicle service booking platform — live slot booking, Firebase backend, payment integration & real-time tracking dashboard.</p>
+          <a href="https://22it08ucet-noob.github.io/gearup-service/" target="_blank" class="proj-link"><i class="fas fa-arrow-right"></i> View Project</a>
+        </div>
+      </div>
+
+      <!-- 05 -->
+      <div class="project-card" data-delay="100">
+        <div class="project-thumb">
+          <div class="proj-grid"></div>
+          <div class="proj-icon"><i class="fas fa-paw"></i></div>
+          <div class="proj-num">05</div>
+          <div class="proj-overlay"><span class="proj-overlay-text">View Project ↗</span></div>
+        </div>
+        <div class="project-body">
+          <span class="proj-tag">Web App</span>
+          <h3 class="proj-title">PetLove & Care — Madurai</h3>
+          <p class="proj-desc">Madurai's trusted pet care platform — find vets, book appointments, manage pet profiles & care history with Firebase real-time backend.</p>
+          <a href="https://22it08ucet-noob.github.io/petlove-care-madurai/" target="_blank" class="proj-link"><i class="fas fa-arrow-right"></i> View Project</a>
+        </div>
+      </div>
+
+      <!-- 06 -->
+      <div class="project-card" data-delay="200">
+        <div class="project-thumb">
+          <div class="proj-grid"></div>
+          <div class="proj-icon"><i class="fas fa-search"></i></div>
+          <div class="proj-num">06</div>
+          <div class="proj-overlay"><span class="proj-overlay-text">View Case Study ↗</span></div>
+        </div>
+        <div class="project-body">
+          <span class="proj-tag">SEO</span>
+          <h3 class="proj-title">SEO Overhaul</h3>
+          <p class="proj-desc">Top-3 Google rankings for 50+ keywords — organic traffic grew 300% in 4 months through technical & content SEO.</p>
+          <a href="#" class="proj-link"><i class="fas fa-arrow-right"></i> View Case Study</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-center"></div></div>
+
+<!-- ═══════════════════════ SERVICES ═══════════════════════ -->
+<section id="services">
+  <div class="section-wrap">
+    <div class="reveal" style="text-align:center;max-width:560px;margin:0 auto 60px">
+      <div class="sec-eyebrow" style="justify-content:center"><div class="sec-dash"></div><span class="sec-label">What I Offer</span><div class="sec-dash" style="background:linear-gradient(270deg,transparent,var(--gold))"></div></div>
+      <h2 class="sec-title">My <em>Services</em></h2>
+      <p class="sec-sub" style="margin:0 auto">End-to-end solutions for your digital ambitions.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card reveal reveal-delay-1">
+        <div class="svc-n">01</div>
+        <div class="svc-ico">🖥️</div>
+        <div class="svc-name">Website Development</div>
+        <p class="svc-desc">Modern, fast, and responsive websites. From elegant landing pages to complex web applications built with the latest tech.</p>
+      </div>
+      <div class="svc-card reveal reveal-delay-2">
+        <div class="svc-n">02</div>
+        <div class="svc-ico">📱</div>
+        <div class="svc-name">Mobile App Development</div>
+        <p class="svc-desc">Cross-platform apps for iOS and Android. Stunning UI, smooth performance, and robust backend architecture.</p>
+      </div>
+      <div class="svc-card reveal reveal-delay-3">
+        <div class="svc-n">03</div>
+        <div class="svc-ico">📊</div>
+        <div class="svc-name">Digital Marketing</div>
+        <p class="svc-desc">Full-funnel strategies to grow your brand, generate qualified leads, and drive meaningful conversions across all channels.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-center"></div></div>
+
+<!-- ═══════════════════════ CONTACT ═══════════════════════ -->
+<section id="contact">
+  <div class="section-wrap">
+    <div class="reveal" style="text-align:center;max-width:560px;margin:0 auto 60px">
+      <div class="sec-eyebrow" style="justify-content:center"><div class="sec-dash"></div><span class="sec-label">Get In Touch</span><div class="sec-dash" style="background:linear-gradient(270deg,transparent,var(--gold))"></div></div>
+      <h2 class="sec-title">Let's Build<br><em>Something Great</em></h2>
+      <p class="sec-sub" style="margin:0 auto">Have a project in mind? I'd love to hear about it.</p>
+    </div>
+
+    <div class="contact-container">
+      <!-- LEFT — Channels -->
+      <div class="reveal">
+        <p class="contact-info-title">Reach me directly on any channel —</p>
+
+        <div class="contact-channels">
+          <a href="https://wa.me/918610861188?text=Hi%20Karthick!" target="_blank" class="channel whatsapp-channel">
+            <div class="ch-ico whatsapp"><i class="fab fa-whatsapp"></i></div>
+            <div class="ch-info"><div class="ch-label">Phone / WhatsApp</div><div class="ch-value">+91 86108 61188</div></div>
+          </a>
+
+          <a href="/cdn-cgi/l/email-protection#e289898390968a8b818990838883d0d1d3daa2858f838b8ecc818d8f" class="channel">
+            <div class="ch-ico"><i class="fas fa-envelope"></i></div>
+            <div class="ch-info"><div class="ch-label">Email</div><div class="ch-value"><span class="__cf_email__" data-cfemail="513a3a3023253938323a23303b306362606911363c30383d7f323e3c">[email&#160;protected]</span></div></div>
+          </a>
+
+          <a href="https://www.linkedin.com/in/karthick-raja-k-1007-2604-kart" target="_blank" class="channel">
+            <div class="ch-ico linkedin"><i class="fab fa-linkedin-in"></i></div>
+            <div class="ch-info"><div class="ch-label">LinkedIn</div><div class="ch-value">Karthick Raja K</div></div>
+          </a>
+
+          <a href="https://www.instagram.com/kutty_karuva_26" target="_blank" class="channel insta-channel">
+            <div class="ch-ico insta"><i class="fab fa-instagram"></i></div>
+            <div class="ch-info"><div class="ch-label">Instagram</div><div class="ch-value">@kutty_karuva_26</div></div>
+          </a>
+        </div>
+
+        <!-- WhatsApp Quick Action -->
+        <a href="https://wa.me/918610861188?text=Hi%20Karthick%2C%20I%27d%20like%20to%20discuss%20a%20project%20with%20you." target="_blank" class="whatsapp-cta">
+          <div class="wa-icon"><i class="fab fa-whatsapp"></i></div>
+          <div class="wa-text">
+            <div class="wa-title">Chat on WhatsApp</div>
+            <div class="wa-sub">Tap to open a conversation instantly</div>
+          </div>
+          <i class="fas fa-arrow-right" style="margin-left:auto;color:var(--muted);font-size:.75rem"></i>
+        </a>
+      </div>
+
+      <!-- RIGHT — Form -->
+      <div class="contact-form-wrap reveal reveal-delay-2">
+        <div class="form-title">Send a Message</div>
+        <div class="form-sub">I usually reply within 24 hours.</div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" id="fname" placeholder="e.g. Arjun Kumar"/>
+          </div>
+          <div class="form-group">
+            <label>Phone / WhatsApp</label>
+            <input type="tel" id="fphone" placeholder="+91 xxxxx xxxxx"/>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="femail" placeholder="you@example.com"/>
+        </div>
+
+        <div class="form-group">
+          <label>Service Needed</label>
+          <select id="fservice">
+            <option value="" disabled selected>Select a service…</option>
+            <option>Website Development</option>
+            <option>Mobile App Development</option>
+            <option>Digital Marketing</option>
+            <option>Performance Ads</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Message</label>
+          <textarea id="fmsg" placeholder="Tell me about your project, timeline, and goals…"></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn-submit" onclick="handleSubmit(event)">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+          <a id="waBtn" href="#" target="_blank" class="btn-wa" onclick="openWhatsApp(event)">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Karthick Raja</div>
+    <p class="footer-copy">© 2026 Karthick Raja · Every pixel has a purpose.</p>
+    <div class="footer-socials">
+      <a href="https://wa.me/918610861188" target="_blank" class="soc" title="+91 86108 61188"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://www.instagram.com/kutty_karuva_26" target="_blank" class="soc" title="@kutty_karuva_26"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.linkedin.com/in/karthick-raja-k-1007-2604-kart" target="_blank" class="soc" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="/cdn-cgi/l/email-protection#0f64646e7d7b67666c647d6e656e3d3c3e374f68626e6663216c6062" class="soc" title="Email"><i class="fas fa-envelope"></i></a>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  /* ── NAV ── */
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.add('open');
+  });
+
+  const closeBtn = document.getElementById('closeMenu');
+  function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+  closeBtn.addEventListener('click', closeMenu);
+  closeBtn.addEventListener('touchend', function(e){ e.preventDefault(); closeMenu(); });
+
+  function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+  /* ── REVEAL (IntersectionObserver) ── */
+  // All visible by default - animations are progressive enhancement only
+  // No hiding elements, just add subtle entrance if IntersectionObserver works
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.05 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    document.querySelectorAll('.project-card').forEach(card => {
+      const delay = parseInt(card.dataset.delay || 0);
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            setTimeout(() => e.target.classList.add('in-view'), delay);
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.05 });
+      obs.observe(card);
+    });
+  }
+
+  /* ── SKILL BARS ── */
+  const barObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const fill = e.target;
+        const w = fill.style.width;
+        fill.style.width = '0';
+        setTimeout(() => {
+          fill.style.width = w;
+          setTimeout(() => fill.classList.add('animated'), 800);
+        }, 200);
+        barObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('.skill-fill').forEach(b => barObs.observe(b));
+
+  /* ── TYPING ANIMATION ── */
+  (function(){
+    const line1 = document.getElementById('type-line1');
+    const line2 = document.getElementById('type-line2');
+    const cursor = document.getElementById('type-cursor');
+    if(!line1 || !line2) return;
+
+    const text1 = 'Karthick';
+    const text2 = 'Raja';
+
+    function typeText(el, text, speed, done) {
+      let i = 0;
+      el.textContent = '';
+      const t = setInterval(() => {
+        el.textContent += text[i++];
+        if(i >= text.length) { clearInterval(t); if(done) done(); }
+      }, speed);
+    }
+
+    // Start typing after small delay
+    setTimeout(() => {
+      typeText(line1, text1, 85, () => {
+        setTimeout(() => {
+          typeText(line2, text2, 100, () => {
+            // Hide cursor after done
+            setTimeout(() => { if(cursor) cursor.style.display='none'; }, 1800);
+          });
+        }, 180);
+      });
+    }, 400);
+  })();
+
+  /* ── TOAST ── */
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+
+  /* ── FORM SUBMIT → FIREBASE ── */
+  async function handleSubmit(e) {
+    const name    = document.getElementById('fname').value.trim();
+    const phone   = document.getElementById('fphone').value.trim();
+    const email   = document.getElementById('femail').value.trim();
+    const service = document.getElementById('fservice').value;
+    const msg     = document.getElementById('fmsg').value.trim();
+
+    if (!name || !email || !msg) {
+      showToast('⚠️ Please fill in Name, Email & Message.');
+      return;
+    }
+
+    const btn = e.target;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    btn.disabled = true;
+
+    try {
+      if (!window.firebaseReady) throw new Error('Firebase not ready');
+
+      await window.addDoc(window.collection(window.db, 'contacts'), {
+        name,
+        phone,
+        email,
+        service,
+        message: msg,
+        timestamp: window.serverTimestamp(),
+        source: 'portfolio'
+      });
+
+      btn.innerHTML = '<i class="fas fa-check"></i> Sent!';
+      btn.style.background = 'linear-gradient(135deg,#6ee7b7,#34d399)';
+      showToast('✅ Message sent! I\'ll reply within 24 hours.');
+
+      // Clear form
+      ['fname','fphone','femail','fmsg'].forEach(id => {
+        document.getElementById(id).value = '';
+      });
+      document.getElementById('fservice').selectedIndex = 0;
+
+    } catch(err) {
+      console.error('Firebase error:', err);
+      btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+      btn.style.background = '';
+      showToast('❌ Something went wrong. Try WhatsApp instead!');
+    } finally {
+      btn.disabled = false;
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+        btn.style.background = '';
+      }, 3500);
+    }
+  }
+
+  /* ── WHATSAPP FORM BUTTON ── */
+  function openWhatsApp(e) {
+    e.preventDefault();
+    const name = document.getElementById('fname').value.trim() || 'there';
+    const service = document.getElementById('fservice').value || 'your services';
+    const msg = document.getElementById('fmsg').value.trim();
+
+    let text = `Hi Karthick! I'm ${name} and I'm interested in ${service}.`;
+    if (msg) text += ` ${msg}`;
+
+    const url = `https://wa.me/918610861188?text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank');
+  }
+
+  /* Safety: ensure hero text always visible after 1s */
+  setTimeout(() => {
+    document.querySelectorAll('.hero-text > *').forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+    document.querySelector('.hero-photo').style.opacity = '1';
+    document.querySelector('.hero-photo').style.transform = 'none';
+  }, 1200);
+
+  /* ── ACTIVE NAV ── */
+  const sections = document.querySelectorAll('section[id]');
+  const navAs = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = ''
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) cur = s.id;
+    });
+    navAs.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--gold-l)' : '';
+    });
+  });
+
+  /* ── SMOOTH SCROLL (JS fallback for file://) ── */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (h
