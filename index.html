@@ -76,13 +76,22 @@
     .nav-cta:hover{background:rgba(200,169,110,0.1);border-color:var(--gold)}
     .hamburger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:12px;min-width:44px;min-height:44px;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;}
     .hamburger span{display:block;width:22px;height:1px;background:var(--gold);transition:all .3s}
+    .hamburger.active span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+    .hamburger.active span:nth-child(2){opacity:0;transform:translateX(-8px)}
+    .hamburger.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
     #mobileMenu{
-      display:none;position:fixed;inset:0;z-index:190;
+      visibility:hidden;opacity:0;
+      position:fixed;inset:0;z-index:190;
       background:rgba(6,5,10,0.98);backdrop-filter:blur(30px);
-      flex-direction:column;align-items:center;justify-content:center;gap:32px;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;
       padding:80px 20px 20px;
+      transform:translateX(100%);
+      transition:transform 0.4s cubic-bezier(.22,1,.36,1), opacity 0.4s, visibility 0.4s;
     }
-    #mobileMenu.open{display:flex}
+    #mobileMenu.open{
+      visibility:visible;opacity:1;
+      transform:translateX(0);
+    }
     #mobileMenu a{
       font-family:var(--fh);font-size:2.2rem;font-weight:300;font-style:italic;
       color:var(--muted);text-decoration:none;transition:color .25s;
@@ -1217,8 +1226,8 @@
       </div>
 
       <h1 class="hero-name">
-        <span class="line1" id="type-line1"></span>
-        <span class="line2" id="type-line2"></span><span class="typing-cursor" id="type-cursor"></span>
+        <span class="line1" id="type-line1">Karthick</span>
+        <span class="line2" id="type-line2">Raja</span><span class="typing-cursor" id="type-cursor"></span>
       </h1>
 
       <div class="hero-rule"></div>
@@ -1472,6 +1481,180 @@
 
 <div class="divider"><div class="divider-center"></div></div>
 
+<!-- ═══════════════════════ PROCESS ═══════════════════════ -->
+<section id="process">
+  <div class="section-wrap">
+    <div class="reveal" style="text-align:center;max-width:560px;margin:0 auto 60px">
+      <div class="sec-eyebrow" style="justify-content:center"><div class="sec-dash"></div><span class="sec-label">How I Work</span><div class="sec-dash" style="background:linear-gradient(270deg,transparent,var(--gold))"></div></div>
+      <h2 class="sec-title">My <em>Process</em></h2>
+      <p class="sec-sub">Simple, transparent workflow — from first chat to final delivery.</p>
+    </div>
+    <div class="process-grid reveal">
+      <div class="process-step">
+        <div class="process-icon">💬</div>
+        <div class="process-num">01</div>
+        <h3 class="process-title">Discuss</h3>
+        <p class="process-desc">We talk about your goals, timeline, and budget. I understand exactly what you need before writing a single line.</p>
+      </div>
+      <div class="process-connector">→</div>
+      <div class="process-step">
+        <div class="process-icon">🎨</div>
+        <div class="process-num">02</div>
+        <h3 class="process-title">Design</h3>
+        <p class="process-desc">I plan the structure and visual direction. You get a clear picture of the end product before development begins.</p>
+      </div>
+      <div class="process-connector">→</div>
+      <div class="process-step">
+        <div class="process-icon">⚙️</div>
+        <div class="process-num">03</div>
+        <h3 class="process-title">Develop</h3>
+        <p class="process-desc">Clean, efficient code built to perform. Regular updates keep you in the loop throughout the build.</p>
+      </div>
+      <div class="process-connector">→</div>
+      <div class="process-step">
+        <div class="process-icon">🚀</div>
+        <div class="process-num">04</div>
+        <h3 class="process-title">Deliver</h3>
+        <p class="process-desc">Final product handed over with full support. Your project goes live — on time and exactly as discussed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #process { padding: 100px 5vw; }
+  .process-grid {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0;
+    max-width: 1100px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+  .process-step {
+    flex: 1;
+    min-width: 200px;
+    max-width: 240px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 36px 24px 30px;
+    position: relative;
+    transition: transform .3s, border-color .3s, box-shadow .3s;
+  }
+  .process-step:hover {
+    transform: translateY(-6px);
+    border-color: rgba(200,169,110,0.4);
+    box-shadow: 0 16px 50px rgba(200,169,110,0.1);
+  }
+  .process-icon {
+    font-size: 2rem;
+    margin-bottom: 16px;
+  }
+  .process-num {
+    font-family: var(--fh);
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+    background: linear-gradient(135deg, rgba(200,169,110,0.15), rgba(200,169,110,0.05));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    letter-spacing: -2px;
+  }
+  .process-title {
+    font-family: var(--fh);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--gold-l);
+    margin-bottom: 12px;
+    letter-spacing: .5px;
+  }
+  .process-desc {
+    font-size: .82rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .process-connector {
+    color: var(--gold-d);
+    font-size: 1.4rem;
+    padding: 0 4px;
+    margin-top: 60px;
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+  @media(max-width:768px) {
+    .process-grid { flex-direction: column; align-items: center; gap: 4px; }
+    .process-step { max-width: 100%; width: 100%; }
+    .process-connector { margin-top: 0; transform: rotate(90deg); }
+  }
+</style>
+
+<div class="divider"><div class="divider-center"></div></div>
+
+<!-- WhatsApp Floating Bubble -->
+<a href="https://wa.me/918610861188?text=Hi%20Karthick%20Raja!%20I%20visited%20your%20portfolio%20and%20I%27d%20love%20to%20work%20with%20you." target="_blank" id="wa-bubble" title="Chat on WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="28" height="28">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.557 4.126 1.532 5.862L.057 23.008a.75.75 0 0 0 .916.966l5.453-1.426A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.73 9.73 0 0 1-4.95-1.35l-.355-.212-3.68.963.98-3.59-.232-.37A9.718 9.718 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
+  </svg>
+  <span class="wa-tooltip">Chat with me!</span>
+</a>
+
+<style>
+  #wa-bubble {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 999;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #25D366;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 28px rgba(37,211,102,0.45);
+    text-decoration: none;
+    animation: waBounce 2.5s ease-in-out infinite;
+    transition: transform .2s, box-shadow .2s;
+  }
+  #wa-bubble:hover {
+    transform: scale(1.12);
+    box-shadow: 0 10px 40px rgba(37,211,102,0.6);
+    animation: none;
+  }
+  #wa-bubble:hover .wa-tooltip { opacity:1; transform: translateX(0); pointer-events:auto; }
+  .wa-tooltip {
+    position: absolute;
+    right: 68px;
+    background: #111;
+    color: #25D366;
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding: 7px 14px;
+    border: 1px solid rgba(37,211,102,0.25);
+    border-radius: 4px;
+    opacity: 0;
+    transform: translateX(8px);
+    transition: all .25s;
+    pointer-events: none;
+  }
+  @keyframes waBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @media(max-width:480px) {
+    #wa-bubble { bottom: 20px; right: 20px; width: 52px; height: 52px; }
+  }
+</style>
+
 <!-- ═══════════════════════ CONTACT ═══════════════════════ -->
 <section id="contact">
   <div class="section-wrap">
@@ -1586,7 +1769,8 @@
 
 <div id="toast"></div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script>
   /* ── NAV ── */
   const nav = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
@@ -1595,14 +1779,21 @@
 
   document.getElementById('hamburger').addEventListener('click', () => {
     document.getElementById('mobileMenu').classList.add('open');
+    document.getElementById('hamburger').classList.add('active');
   });
 
   const closeBtn = document.getElementById('closeMenu');
-  function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('active');
+  }
   closeBtn.addEventListener('click', closeMenu);
   closeBtn.addEventListener('touchend', function(e){ e.preventDefault(); closeMenu(); });
 
-  function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
+  function closeMobile() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('active');
+  }
 
   /* ── REVEAL (IntersectionObserver) ── */
   // All visible by default - animations are progressive enhancement only
@@ -1647,6 +1838,8 @@
     });
   }, { threshold: 0.4 });
   document.querySelectorAll('.skill-fill').forEach(b => barObs.observe(b));
+
+
 
   /* ── TYPING ANIMATION ── */
   (function(){
