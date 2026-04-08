@@ -935,6 +935,39 @@
       .hero-stats{flex-wrap:wrap;justify-content:center;gap:12px}
     }
 
+    /* ═══ FREELANCE BADGE ═══ */
+    .freelance-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 16px;
+      background: rgba(37, 211, 102, 0.07);
+      border: 1px solid rgba(37, 211, 102, 0.25);
+      border-radius: 100px;
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #6ee7a0;
+      opacity: 0;
+      animation: fadeUp .8s .2s cubic-bezier(.22,1,.36,1) forwards;
+      margin-bottom: 16px;
+    }
+    .freelance-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #25D366;
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+      animation: freelancePulse 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes freelancePulse {
+      0%   { box-shadow: 0 0 0 0 rgba(37,211,102,0.5); }
+      70%  { box-shadow: 0 0 0 7px rgba(37,211,102,0); }
+      100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+    }
+
     /* TOAST */
     #toast{
       position:fixed;bottom:32px;right:32px;z-index:500;
@@ -1123,6 +1156,8 @@
       color:rgba(200,169,110,0.2);
       animation:introFadeIn 1s 1.2s ease both;opacity:0;
     }
+
+
   </style>
 
   <!-- Decorative corners -->
@@ -1225,6 +1260,11 @@
         <div class="eyebrow-dot"></div>
       </div>
 
+      <div class="freelance-badge">
+        <span class="freelance-dot"></span>
+        Available for Freelance
+      </div>
+
       <h1 class="hero-name">
         <span class="line1" id="type-line1">Karthick</span>
         <span class="line2" id="type-line2">Raja</span><span class="typing-cursor" id="type-cursor"></span>
@@ -1245,7 +1285,7 @@
 
       <div class="hero-stats">
         <div class="hstat">
-          <div class="hstat-num">7+</div>
+          <div class="hstat-num">8+</div>
           <div class="hstat-label">Projects Done</div>
         </div>
         <div class="hstat">
@@ -1460,18 +1500,18 @@
       </div>
 
       <!-- 08 -->
-      <div class="project-card" data-delay="100" style="opacity:0.6;pointer-events:none;">
+      <div class="project-card" data-delay="100">
         <div class="project-thumb">
           <div class="proj-grid"></div>
-          <div class="proj-icon"><i class="fas fa-rocket"></i></div>
+          <div class="proj-icon"><i class="fas fa-file-excel"></i></div>
           <div class="proj-num">08</div>
-          <div class="proj-overlay"><span class="proj-overlay-text">Coming Soon ↗</span></div>
+          <div class="proj-overlay"><span class="proj-overlay-text">View Project ↗</span></div>
         </div>
         <div class="project-body">
-          <span class="proj-tag">Upcoming</span>
-          <h3 class="proj-title">Next Project — Coming Soon</h3>
-          <p class="proj-desc">Something exciting is in the works. Stay tuned for the next big project — currently in development.</p>
-          <a href="#" class="proj-link" style="pointer-events:none;"><i class="fas fa-clock"></i> In Development</a>
+          <span class="proj-tag">AI Web App</span>
+          <h3 class="proj-title">InsightSheets — Excel AI Analyzer</h3>
+          <p class="proj-desc">Upload any Excel sheet and get instant AI-powered charts, data visualizations, and smart insights — making data analysis effortless for everyone.</p>
+          <a href="https://insightsheets.onrender.com/" target="_blank" class="proj-link"><i class="fas fa-arrow-right"></i> View Project</a>
         </div>
       </div>
     </div>
